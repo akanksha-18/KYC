@@ -1,0 +1,29 @@
+.logo {
+  height: 32px;
+  margin: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.ant-layout-sider-trigger {
+  background: #001529;
+}
+
+.dashboard-overview h1,
+.risk-assessment h1,
+.workflow-management h1 {
+  margin-bottom: 24px;
+}
+
+.metric-cards .ant-card {
+  height: 100%;
+}
+
+.charts-container .ant-card {
+  height: 100%;
+}

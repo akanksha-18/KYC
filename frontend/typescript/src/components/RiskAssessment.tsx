@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Progress, Statistic, Table, Tag, Select, Input,  Space } from 'antd';
 import { WarningOutlined, CheckCircleOutlined, SearchOutlined } from '@ant-design/icons';
+import type { ColumnsType } from 'antd/es/table';
 import axios from 'axios';
 
 const { Option } = Select;
@@ -108,78 +109,155 @@ const RiskAssessment: React.FC = () => {
   const mediumRiskCount = customers.filter(c => c.riskCategory === 'Medium Risk').length;
   const lowRiskCount = customers.filter(c => c.riskCategory === 'Low Risk').length;
 
-  const columns = [
-    {
-      title: 'Customer',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text: string, record: CustomerWithRisk) => (
-        <span>
-          {text} <br />
-          <small style={{ color: '#888' }}>{record.customerId}</small>
-        </span>
-      ),
+  // const columns = [
+  //   {
+  //     title: 'Customer',
+  //     dataIndex: 'name',
+  //     key: 'name',
+  //     render: (text: string, record: CustomerWithRisk) => (
+  //       <span>
+  //         {text} <br />
+  //         <small style={{ color: '#888' }}>{record.customerId}</small>
+  //       </span>
+  //     ),
+  //   },
+  //   {
+  //     title: 'Risk Score',
+  //     dataIndex: 'riskScore',
+  //     key: 'riskScore',
+  //     sorter: (a: CustomerWithRisk, b: CustomerWithRisk) => a.riskScore - b.riskScore,
+  //     render: (score: number) => (
+  //       <Progress 
+  //         percent={Math.round(score)} 
+  //         size="small" 
+  //         status={score > 60 ? "exception" : score > 30 ? "normal" : "success"} 
+  //         strokeColor={score > 60 ? "#f5222d" : score > 30 ? "#faad14" : "#52c41a"}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     title: 'Credit Score',
+  //     dataIndex: 'creditScore',
+  //     key: 'creditScore',
+  //     sorter: (a: CustomerWithRisk, b: CustomerWithRisk) => a.creditScore - b.creditScore,
+  //   },
+  //   {
+  //     title: 'Debt-to-Income',
+  //     dataIndex: 'debtToIncomeRatio',
+  //     key: 'debtToIncomeRatio',
+  //     render: (ratio: number) => `${(ratio * 100).toFixed(1)}%`,
+  //     sorter: (a: CustomerWithRisk, b: CustomerWithRisk) => a.debtToIncomeRatio - b.debtToIncomeRatio,
+  //   },
+  //   {
+  //     title: 'Repayment Rate',
+  //     dataIndex: 'repaymentRate',
+  //     key: 'repaymentRate',
+  //     render: (rate: number) => `${rate.toFixed(0)}%`,
+  //     sorter: (a: CustomerWithRisk, b: CustomerWithRisk) => a.repaymentRate - b.repaymentRate,
+  //   },
+  //   {
+  //     title: 'Risk Category',
+  //     dataIndex: 'riskCategory',
+  //     key: 'riskCategory',
+  //     filters: [
+  //       { text: 'High Risk', value: 'High Risk' },
+  //       { text: 'Medium Risk', value: 'Medium Risk' },
+  //       { text: 'Low Risk', value: 'Low Risk' },
+  //     ],
+  //     onFilter: (value: string, record: CustomerWithRisk) => record.riskCategory === value,
+  //     render: (category: string) => {
+  //       let color = 'green';
+  //       if (category === 'Medium Risk') color = 'orange';
+  //       if (category === 'High Risk') color = 'red';
+  //       return <Tag color={color}>{category}</Tag>;
+  //     },
+  //   },
+  //   {
+  //     title: 'Status',
+  //     dataIndex: 'status',
+  //     key: 'status',
+  //     render: (status: string) => (
+  //       <Tag color={getStatusColor(status)}>{status}</Tag>
+  //     ),
+  //   },
+  // ];
+
+ 
+
+
+
+const columns: ColumnsType<CustomerWithRisk> = [
+  {
+    title: 'Customer',
+    dataIndex: 'name',
+    key: 'name',
+    render: (text: string, record: CustomerWithRisk) => (
+      <span>
+        {text} <br />
+        <small style={{ color: '#888' }}>{record.customerId}</small>
+      </span>
+    ),
+  },
+  {
+    title: 'Risk Score',
+    dataIndex: 'riskScore',
+    key: 'riskScore',
+    sorter: (a, b) => a.riskScore - b.riskScore,
+    render: (score: number) => (
+      <Progress 
+        percent={Math.round(score)} 
+        size="small" 
+        status={score > 60 ? "exception" : score > 30 ? "normal" : "success"} 
+        strokeColor={score > 60 ? "#f5222d" : score > 30 ? "#faad14" : "#52c41a"}
+      />
+    ),
+  },
+  {
+    title: 'Credit Score',
+    dataIndex: 'creditScore',
+    key: 'creditScore',
+    sorter: (a, b) => a.creditScore - b.creditScore,
+  },
+  {
+    title: 'Debt-to-Income',
+    dataIndex: 'debtToIncomeRatio',
+    key: 'debtToIncomeRatio',
+    render: (ratio: number) => `${(ratio * 100).toFixed(1)}%`,
+    sorter: (a, b) => a.debtToIncomeRatio - b.debtToIncomeRatio,
+  },
+  {
+    title: 'Repayment Rate',
+    dataIndex: 'repaymentRate',
+    key: 'repaymentRate',
+    render: (rate: number) => `${rate.toFixed(0)}%`,
+    sorter: (a, b) => a.repaymentRate - b.repaymentRate,
+  },
+  {
+    title: 'Risk Category',
+    dataIndex: 'riskCategory',
+    key: 'riskCategory',
+    filters: [
+      { text: 'High Risk', value: 'High Risk' },
+      { text: 'Medium Risk', value: 'Medium Risk' },
+      { text: 'Low Risk', value: 'Low Risk' },
+    ],
+    onFilter: (value, record) => record.riskCategory === value,
+    render: (category: string) => {
+      let color = 'green';
+      if (category === 'Medium Risk') color = 'orange';
+      if (category === 'High Risk') color = 'red';
+      return <Tag color={color}>{category}</Tag>;
     },
-    {
-      title: 'Risk Score',
-      dataIndex: 'riskScore',
-      key: 'riskScore',
-      sorter: (a: CustomerWithRisk, b: CustomerWithRisk) => a.riskScore - b.riskScore,
-      render: (score: number) => (
-        <Progress 
-          percent={Math.round(score)} 
-          size="small" 
-          status={score > 60 ? "exception" : score > 30 ? "normal" : "success"} 
-          strokeColor={score > 60 ? "#f5222d" : score > 30 ? "#faad14" : "#52c41a"}
-        />
-      ),
-    },
-    {
-      title: 'Credit Score',
-      dataIndex: 'creditScore',
-      key: 'creditScore',
-      sorter: (a: CustomerWithRisk, b: CustomerWithRisk) => a.creditScore - b.creditScore,
-    },
-    {
-      title: 'Debt-to-Income',
-      dataIndex: 'debtToIncomeRatio',
-      key: 'debtToIncomeRatio',
-      render: (ratio: number) => `${(ratio * 100).toFixed(1)}%`,
-      sorter: (a: CustomerWithRisk, b: CustomerWithRisk) => a.debtToIncomeRatio - b.debtToIncomeRatio,
-    },
-    {
-      title: 'Repayment Rate',
-      dataIndex: 'repaymentRate',
-      key: 'repaymentRate',
-      render: (rate: number) => `${rate.toFixed(0)}%`,
-      sorter: (a: CustomerWithRisk, b: CustomerWithRisk) => a.repaymentRate - b.repaymentRate,
-    },
-    {
-      title: 'Risk Category',
-      dataIndex: 'riskCategory',
-      key: 'riskCategory',
-      filters: [
-        { text: 'High Risk', value: 'High Risk' },
-        { text: 'Medium Risk', value: 'Medium Risk' },
-        { text: 'Low Risk', value: 'Low Risk' },
-      ],
-      onFilter: (value: string, record: CustomerWithRisk) => record.riskCategory === value,
-      render: (category: string) => {
-        let color = 'green';
-        if (category === 'Medium Risk') color = 'orange';
-        if (category === 'High Risk') color = 'red';
-        return <Tag color={color}>{category}</Tag>;
-      },
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (status: string) => (
-        <Tag color={getStatusColor(status)}>{status}</Tag>
-      ),
-    },
-  ];
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+    render: (status: string) => (
+      <Tag color={getStatusColor(status)}>{status}</Tag>
+    ),
+  },
+];
 
   return (
     <div className="risk-assessment">

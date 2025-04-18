@@ -323,7 +323,7 @@ const DashboardOverview: React.FC = () => {
                   dataKey="value"
                   label={isMobile ? undefined : ({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                 >
-                  {riskDistribution.map((entry, index) => (
+                  {riskDistribution.map(( index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>

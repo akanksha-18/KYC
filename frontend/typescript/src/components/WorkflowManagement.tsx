@@ -38,7 +38,7 @@ const WorkflowManagement: React.FC = () => {
   const fetchCustomers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/customers');
+      const response = await axios.get('https://kyc-2rov.onrender.com/api/customers');
       const customersWithRisk = response.data.map((customer: Customer) => ({
         ...customer,
         riskScore: calculateRiskScore(customer),
@@ -104,7 +104,7 @@ const WorkflowManagement: React.FC = () => {
         status: values.status,
       };
       
-      await axios.put(`http://localhost:5000/api/customers/${selectedCustomer.customerId}`, updatedCustomer);
+      await axios.put(`https://kyc-2rov.onrender.com/api/customers/${selectedCustomer.customerId}`, updatedCustomer);
       
       // Update local state
       setCustomers(prevCustomers => 
@@ -137,7 +137,7 @@ const WorkflowManagement: React.FC = () => {
 
   const sendAlert = async (customer: CustomerWithRisk, notes: string) => {
     try {
-      await axios.post('http://localhost:5000/api/alerts', {
+      await axios.post('https://kyc-2rov.onrender.com/api/alerts', {
         customerId: customer.customerId,
         name: customer.name,
         riskScore: customer.riskScore,

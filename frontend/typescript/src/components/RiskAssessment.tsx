@@ -33,7 +33,7 @@ const RiskAssessment: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/customers');
+        const response = await axios.get('https://kyc-2rov.onrender.com/api/customers');
         const customersWithRisk = response.data.map((customer: Customer) => {
           const repaymentRate = customer.loanRepaymentHistory.reduce((sum, val) => sum + val, 0) / 
                                customer.loanRepaymentHistory.length * 100;

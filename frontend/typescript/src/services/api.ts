@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { Customer, CustomerWithRisk, enrichCustomerWithRiskData } from '../utils/riskScoring';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://kyc-2rov.onrender.com/api';
 
 const api = {
   // Customer endpoints

@@ -4,7 +4,7 @@ import { UserOutlined, ExclamationCircleOutlined, CheckCircleOutlined, CloseCirc
 import axios from 'axios';
 
 const { Option } = Select;
-const { confirm } = Modal;
+
 
 interface Customer {
   customerId: string;

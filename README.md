@@ -36,6 +36,12 @@ This project is a comprehensive financial dashboard built with React and TypeScr
 - **Recharts**: Responsive charting library
 - **Axios**: HTTP client for API requests
 - **React-Responsive**: Media query hooks for responsive design
+![image](https://github.com/user-attachments/assets/60587c17-51c2-46dc-a5b0-a52439b8b8b0)
+![image](https://github.com/user-attachments/assets/3d9c15c1-729e-49a4-a61e-0cf1f3bd6d3c)
+![image](https://github.com/user-attachments/assets/c23b4a86-bf30-4483-ac57-431ba9f0a973)
+
+
+
 
 ## API Integration
 

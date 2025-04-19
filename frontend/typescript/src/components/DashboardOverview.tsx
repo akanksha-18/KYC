@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Statistic, Table, Tag, Progress, Typography } from 'antd';
-import { ArrowUpOutlined} from '@ant-design/icons';
+import { ArrowUpOutlined } from '@ant-design/icons';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
@@ -49,7 +49,8 @@ const DashboardOverview: React.FC = () => {
   const totalCustomers = customers.length;
   const totalIncome = customers.reduce((sum, customer) => sum + customer.monthlyIncome, 0);
   const totalExpenses = customers.reduce((sum, customer) => sum + customer.monthlyExpenses, 0);
-  const averageCreditScore = customers.reduce((sum, customer) => sum + customer.creditScore, 0) / totalCustomers || 0;
+  const averageCreditScore = totalCustomers > 0 ? 
+    customers.reduce((sum, customer) => sum + customer.creditScore, 0) / totalCustomers : 0;
 
   // Generate financial data for line chart
   const financialData = customers.map(customer => ({
@@ -67,10 +68,11 @@ const DashboardOverview: React.FC = () => {
   
     const creditScoreFactor = Math.min(customer.creditScore / 850, 1) * 100;
     
-    const repaymentRate = customer.loanRepaymentHistory.reduce((sum, val) => sum + val, 0) / 
-                          customer.loanRepaymentHistory.length * 100;
+    const repaymentRate = customer.loanRepaymentHistory.length > 0 ?
+      customer.loanRepaymentHistory.reduce((sum, val) => sum + val, 0) / 
+      customer.loanRepaymentHistory.length * 100 : 0;
     
-    const debtToIncomeRatio = customer.outstandingLoans / (customer.monthlyIncome * 12);
+    const debtToIncomeRatio = customer.outstandingLoans / Math.max(customer.monthlyIncome * 12, 1);
     const debtToIncomeFactor = Math.max(0, 100 - (debtToIncomeRatio * 100));
     
     const invertedCreditScore = 100 - creditScoreFactor;
@@ -323,7 +325,7 @@ const DashboardOverview: React.FC = () => {
                   dataKey="value"
                   label={isMobile ? undefined : ({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                 >
-                  {riskDistribution.map(( index) => (
+                  {riskDistribution.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
@@ -343,7 +345,7 @@ const DashboardOverview: React.FC = () => {
       >
         <Table 
           dataSource={customersWithRisk} 
-          columns={getColumns()} 
+          columns={getColumns()}
           rowKey="customerId"
           loading={loading}
           pagination={{ 

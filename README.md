@@ -85,6 +85,32 @@ The dashboard adapts to different screen sizes:
 - **Desktop**: Full feature set with detailed tables and large charts
 - **Tablet**: Streamlined layout with adjusted column visibility
 - **Mobile**: Essential information with simplified charts and compact tables
+### ✅ Risk Scoring Explanation
+
+The risk score is calculated using a weighted formula based on three key financial factors:
+
+- **Credit Score** (40% weight)  
+  The credit score is normalized to a percentage out of 100, where a higher credit score contributes to a lower risk.
+
+- **Loan Repayment History** (30% weight)  
+  This is calculated as the average repayment success rate (percentage) across all previous loans. A higher repayment rate reduces the risk.
+
+- **Debt-to-Income Ratio** (30% weight)  
+  Calculated by dividing the customer's total outstanding loans by their annual income. A lower ratio indicates better financial stability and lowers the risk score.
+
+The final **risk score** is a value between **0 and 100**, where:
+- Lower scores indicate **lower risk**
+- Higher scores indicate **higher risk**
+
+Based on the final score, customers are classified into the following **risk categories**:
+
+| Risk Score Range | Risk Category |
+|------------------|----------------|
+| 0 - 29           | Low Risk       |
+| 30 - 59          | Medium Risk    |
+| 60 - 100         | High Risk      |
+
+This scoring system helps determine loan eligibility and guide approval decisions.
 
 ## Code Structure
 

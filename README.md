@@ -2,6 +2,10 @@
 
 A responsive React dashboard for financial data analysis and risk assessment.
 
+Hosted Link : https://kyc-wine.vercel.app/
+
+Backend Link : https://kyc-2rov.onrender.com/
+
 ## Overview
 
 This project is a comprehensive financial dashboard built with React and TypeScript that allows users to:

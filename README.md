@@ -47,7 +47,7 @@ The dashboard connects to a backend API to fetch customer financial data:
 
 1. Clone the repository:
    ```
-   git clone [repository-url]
+   git clone https://github.com/akanksha-18/KYC.git
    ```
 
 2. Install dependencies:

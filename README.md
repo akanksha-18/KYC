@@ -92,6 +92,14 @@ The dashboard adapts to different screen sizes:
 - **TypeScript Interface**: Strong typing for customer data structure
 - **Responsive Hooks**: Media queries to adjust layout based on viewport
 - **Dynamic Calculations**: Real-time risk assessment and financial metrics
+## AI Tool Usage
+This project utilized AI assistance to enhance the development process:
+Claude (Anthropic's AI Assistant)
+
+- **Debugging Support**: Helped identify and fix TypeScript errors related to unused variables in React components and type issues in arithmetic operations
+- **Documentation Creation**: Generated comprehensive README documentation capturing the project's features, structure, and implementation details
+- **Code Optimization**: Provided suggestions for making arithmetic operations type-safe by ensuring proper number conversions
+- **Implementation Guidance**: Offered solutions for properly handling unused parameters in mapping functions
 
 ## Troubleshooting
 

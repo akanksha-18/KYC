@@ -66,22 +66,23 @@ const DashboardOverview: React.FC = () => {
     const repaymentHistoryWeight = 0.3;
     const debtToIncomeWeight = 0.3;
   
-    const creditScoreFactor = Math.min(customer.creditScore / 850, 1) * 100;
+    // Ensure these are numbers
+    const creditScoreFactor = Math.min((customer.creditScore || 0) / 850, 1) * 100;
     
     const repaymentRate = customer.loanRepaymentHistory.length > 0 ?
-      customer.loanRepaymentHistory.reduce((sum, val) => sum + val, 0) / 
+      customer.loanRepaymentHistory.reduce((sum, val) => Number(sum) + Number(val), 0) / 
       customer.loanRepaymentHistory.length * 100 : 0;
     
-    const debtToIncomeRatio = customer.outstandingLoans / Math.max(customer.monthlyIncome * 12, 1);
+    const debtToIncomeRatio = Number(customer.outstandingLoans) / Math.max(Number(customer.monthlyIncome) * 12, 1);
     const debtToIncomeFactor = Math.max(0, 100 - (debtToIncomeRatio * 100));
     
     const invertedCreditScore = 100 - creditScoreFactor;
     const invertedRepaymentRate = 100 - repaymentRate;
     
     return Math.min(Math.max(
-      invertedCreditScore * creditScoreWeight +
-      invertedRepaymentRate * repaymentHistoryWeight +
-      debtToIncomeFactor * debtToIncomeWeight,
+      Number(invertedCreditScore) * creditScoreWeight +
+      Number(invertedRepaymentRate) * repaymentHistoryWeight +
+      Number(debtToIncomeFactor) * debtToIncomeWeight,
       0
     ), 100);
   };
@@ -326,9 +327,9 @@ const DashboardOverview: React.FC = () => {
                   label={isMobile ? undefined : ({ name, percent }: { name: string, percent: number }) => 
                     `${name}: ${(percent * 100).toFixed(0)}%`}
                 >
-                  {riskDistribution.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
+                  {riskDistribution.map((_, index) => (
+  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+))}
                 </Pie>
                 <Tooltip />
                 <Legend wrapperStyle={{ fontSize: isMobile ? 10 : 12 }} />

@@ -36,9 +36,12 @@ This project is a comprehensive financial dashboard built with React and TypeScr
 - **Recharts**: Responsive charting library
 - **Axios**: HTTP client for API requests
 - **React-Responsive**: Media query hooks for responsive design
-![image](https://github.com/user-attachments/assets/60587c17-51c2-46dc-a5b0-a52439b8b8b0)
-![image](https://github.com/user-attachments/assets/3d9c15c1-729e-49a4-a61e-0cf1f3bd6d3c)
-![image](https://github.com/user-attachments/assets/c23b4a86-bf30-4483-ac57-431ba9f0a973)
+![image](https://github.com/user-attachments/assets/20f64eb8-dc05-42bc-a813-a223df912541)
+![image](https://github.com/user-attachments/assets/c2942b57-0f44-4e60-b334-f42a427f420d)
+![image](https://github.com/user-attachments/assets/3481b972-c0d4-4f31-96d9-c110ca99a1d6)
+![image](https://github.com/user-attachments/assets/ddd483fb-c46f-4567-b92b-6accf1d0e6ce)
+![image](https://github.com/user-attachments/assets/b9cc4069-3e2b-4be6-bb7d-da4124159ee7)
+
 
 
 
@@ -85,6 +88,32 @@ The dashboard adapts to different screen sizes:
 - **Desktop**: Full feature set with detailed tables and large charts
 - **Tablet**: Streamlined layout with adjusted column visibility
 - **Mobile**: Essential information with simplified charts and compact tables
+### ✅ Risk Scoring Explanation
+
+The risk score is calculated using a weighted formula based on three key financial factors:
+
+- **Credit Score** (40% weight)  
+  The credit score is normalized to a percentage out of 100, where a higher credit score contributes to a lower risk.
+
+- **Loan Repayment History** (30% weight)  
+  This is calculated as the average repayment success rate (percentage) across all previous loans. A higher repayment rate reduces the risk.
+
+- **Debt-to-Income Ratio** (30% weight)  
+  Calculated by dividing the customer's total outstanding loans by their annual income. A lower ratio indicates better financial stability and lowers the risk score.
+
+The final **risk score** is a value between **0 and 100**, where:
+- Lower scores indicate **lower risk**
+- Higher scores indicate **higher risk**
+
+Based on the final score, customers are classified into the following **risk categories**:
+
+| Risk Score Range | Risk Category |
+|------------------|----------------|
+| 0 - 29           | Low Risk       |
+| 30 - 59          | Medium Risk    |
+| 60 - 100         | High Risk      |
+
+This scoring system helps determine loan eligibility and guide approval decisions.
 
 ## Code Structure
 

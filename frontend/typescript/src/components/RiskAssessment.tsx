@@ -292,6 +292,9 @@ interface Customer {
   accountBalance: number;
   status: 'Review' | 'Approved' | 'Rejected';
 }
+interface Props {
+  darkMode: boolean;
+}
 
 interface CustomerWithRisk extends Customer {
   riskScore: number;
@@ -300,7 +303,7 @@ interface CustomerWithRisk extends Customer {
   repaymentRate: number;
 }
 
-const RiskAssessment: React.FC = () => {
+const RiskAssessment: React.FC <Props> = ({darkMode}) => {
   const [customers, setCustomers] = useState<CustomerWithRisk[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [filter, setFilter] = useState<string>('all');
@@ -521,7 +524,10 @@ const RiskAssessment: React.FC = () => {
   } : {};
 
   return (
-    <div className="risk-assessment" style={{ padding: isMobile ? '8px' : '24px' }}>
+    <div
+  className={`risk-assessment ${darkMode ? 'bg-[#1e1e2f] text-white' : 'bg-white text-black'}`}
+  style={{ padding: isMobile ? '8px' : '24px' }}
+>
       <Title level={isMobile ? 3 : 1}>Risk Assessment</Title>
       
       {/* Risk Summary Cards */}

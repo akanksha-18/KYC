@@ -365,8 +365,11 @@ interface CustomerWithRisk extends Customer {
   riskScore: number;
   riskCategory: string;
 }
+interface Props {
+  darkMode: boolean;
+}
 
-const WorkflowManagement: React.FC = () => {
+const WorkflowManagement: React.FC <Props> = ({darkMode}) => {
   const [customers, setCustomers] = useState<CustomerWithRisk[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -700,7 +703,10 @@ const WorkflowManagement: React.FC = () => {
   );
 
   return (
-    <div className="workflow-management" style={{ padding: isMobile ? '8px' : '24px' }}>
+    <div
+    className={`workflow-management ${darkMode ? 'bg-[#1e1e2f] text-white' : 'bg-white text-black'}`}
+    style={{ padding: isMobile ? '8px' : '24px' }}
+  >
       <Title level={isMobile ? 3 : 1}>Workflow Management</Title>
       
       {/* High Risk Alerts */}

@@ -84,7 +84,7 @@ const { defaultAlgorithm, darkAlgorithm } = theme;
 
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
-  // Initialize darkMode state from localStorage or default to false
+  
   const [darkMode, setDarkMode] = useState(() => {
     const savedMode = localStorage.getItem('darkMode');
     return savedMode !== null ? JSON.parse(savedMode) : false;
@@ -131,17 +131,29 @@ const App: React.FC = () => {
             <div className="logo">
               {!collapsed && <Title level={4} style={{ color: 'white', margin: '16px' }}>Credit Risk</Title>}
             </div>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-              <Menu.Item key="1" icon={<DashboardOutlined />}>
-                <Link to="/">Dashboard</Link>
-              </Menu.Item>
-              <Menu.Item key="2" icon={<BarChartOutlined />}>
-                <Link to="/risk-assessment">Risk Assessment</Link>
-              </Menu.Item>
-              <Menu.Item key="3" icon={<ApartmentOutlined />}>
-                <Link to="/workflow">Workflow Management</Link>
-              </Menu.Item>
-            </Menu>
+            <Menu
+  theme="dark"
+  defaultSelectedKeys={['1']}
+  mode="inline"
+  items={[
+    {
+      key: '1',
+      icon: <DashboardOutlined />,
+      label: <Link to="/">Dashboard</Link>,
+    },
+    {
+      key: '2',
+      icon: <BarChartOutlined />,
+      label: <Link to="/risk-assessment">Risk Assessment</Link>,
+    },
+    {
+      key: '3',
+      icon: <ApartmentOutlined />,
+      label: <Link to="/workflow">Workflow Management</Link>,
+    },
+  ]}
+/>
+
           </Sider>
           <Layout className="site-layout">
             <Header 

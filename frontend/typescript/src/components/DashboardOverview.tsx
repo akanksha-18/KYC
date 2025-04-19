@@ -386,9 +386,12 @@ interface Customer {
   status: 'Review' | 'Approved' | 'Rejected';
 }
 
+interface Props {
+  darkMode: boolean;
+}
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-const DashboardOverview: React.FC = () => {
+const DashboardOverview: React.FC <Props>= ({ darkMode }) => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   
@@ -611,7 +614,11 @@ const DashboardOverview: React.FC = () => {
   };
 
   return (
-    <div className="dashboard-overview" style={{ padding: isMobile ? '10px' : '20px' }}>
+    <div
+  className={`dashboard-overview ${darkMode ? 'bg-[#1e1e2f] text-white' : 'bg-white text-black'}`}
+  style={{ padding: isMobile ? '10px' : '20px' }}
+>
+
       <Title level={isMobile ? 4 : isTablet ? 3 : 2} style={{ marginBottom: isMobile ? '12px' : '24px' }}>Financial Dashboard</Title>
       
       {/* Key Metrics */}

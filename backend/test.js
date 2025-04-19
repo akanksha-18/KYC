@@ -65,17 +65,17 @@ const sampleCustomers = [
 
 const insertSampleData = async () => {
   try {
-    // Connect to MongoDB (you don't need to include useNewUrlParser and useUnifiedTopology anymore)
-    await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+   
+    await mongoose.connect(process.env.MONGO_URI);
 
     console.log('Connected to MongoDB');
 
-    // Insert sample data
+  
     const result = await Customer.insertMany(sampleCustomers);
 
     console.log('Sample data inserted:', result);
 
-    // Close the connection
+    
     mongoose.connection.close();
   } catch (err) {
     console.error('Error inserting sample data:', err);

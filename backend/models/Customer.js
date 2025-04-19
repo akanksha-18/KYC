@@ -1,6 +1,6 @@
 class Customer {
     constructor() {
-      // Initialize with sample data
+     
       this.customers = [
         {
           "customerId": "CUST1001",
@@ -96,22 +96,4 @@ class Customer {
   // 👇 export an instance, not the class
   module.exports = new Customer();
 
-// models/Customer.js
-// const mongoose = require('mongoose');
 
-// const customerSchema = new mongoose.Schema({
-//   customerId: { type: String, required: true },
-//   name: { type: String, required: true },
-//   monthlyIncome: { type: Number, required: true },
-//   monthlyExpenses: { type: Number, required: true },
-//   creditScore: { type: Number, required: true },
-//   outstandingLoans: { type: Number, required: true },
-//   loanRepaymentHistory: { type: [Number], required: true },
-//   accountBalance: { type: Number, required: true },
-//   status: { type: String, required: true }
-// });
-
-// // Create a Mongoose model based on the schema
-// const Customer = mongoose.model('Customer', customerSchema);
-
-// module.exports = Customer;
